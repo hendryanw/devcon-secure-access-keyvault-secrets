@@ -23,5 +23,6 @@ CD C:\00-Source\devcon-keyvault\CertificateOperations
 CD C:\00-Source\devcon-keyvault\DevCon-VM-Template
 .\deploy.ps1 -ResourceGroupName devcon-vm-rg -ResourceGroupLocation southeastasia
 
+- Check the certificate in the certificate store certlm.msc
 - Copy the Get-SuperSecret.ps1 to VM
 - Execute the Get-SuperSecret.ps1

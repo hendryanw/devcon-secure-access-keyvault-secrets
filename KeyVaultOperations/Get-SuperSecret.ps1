@@ -6,6 +6,7 @@ Param (
 $ErrorActionPreference = "Stop";
 
 # Install and Import AzureRM.KeyVault module
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module AzureRM.KeyVault -Force
 Import-Module AzureRM.KeyVault
 
