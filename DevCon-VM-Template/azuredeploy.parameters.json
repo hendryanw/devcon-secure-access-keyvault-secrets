@@ -1,0 +1,27 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmName": {
+            "value": "devcon-VM"
+        },
+        "adminUsername": {
+            "value": "devcon"
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/f6b0f8e9-1318-4bc9-b4be-e853071d1402/resourceGroups/devcon-malaysia/providers/Microsoft.KeyVault/vaults/devcon-kv"
+                },
+                "secretName": "devcon-VM-password",
+                "secretVersion": "98f5f7b373a041d0b7068708b1a4df4e"
+            }
+        },
+        "privateCertVaultId": {
+            "value": "/subscriptions/f6b0f8e9-1318-4bc9-b4be-e853071d1402/resourceGroups/devcon-malaysia/providers/Microsoft.KeyVault/vaults/devcon-kv"
+        },
+        "privateCertSecretId": {
+            "value": "https://devcon-kv.vault.azure.net/secrets/devcon-VM-private-cert/eec739f40bb14d42840fe8eca5990175"
+        }
+    }
+}

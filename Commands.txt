@@ -1,0 +1,27 @@
+- Enabling access to Azure Virtual Machines for deployment.
+- Enabling access to Azure Resource Manager for template deployment.
+
+- Open PowerShell window and Login to Azure
+Login-AzureRmAccount -SubscriptionName Arvato-MS-Case
+
+- Create a new Service Principal
+CD C:\00-Source\devcon-keyvault\CertificateOperations
+.\New-AzureSPWithPublicCert `
+    -ServicePrincipalName devcon-VM-sp `
+    -PublicCertFilePath C:\00-Source\devcon-keyvault\Certs\public.cer
+
+- Assign the new Service Principal access to the Key Vault.
+
+- Upload the private certificate into key vault.
+CD C:\00-Source\devcon-keyvault\CertificateOperations
+.\Upload-PrivateCert `
+    -VaultName devcon-kv `
+    -SecretName devcon-VM-private-cert `
+    -PrivateCertFilePath C:\00-Source\devcon-keyvault\Certs\private.pfx
+
+- Deploy the devcon-VM
+CD C:\00-Source\devcon-keyvault\DevCon-VM-Template
+.\deploy.ps1 -ResourceGroupName devcon-vm-rg -ResourceGroupLocation southeastasia
+
+- Copy the Get-SuperSecret.ps1 to VM
+- Execute the Get-SuperSecret.ps1
