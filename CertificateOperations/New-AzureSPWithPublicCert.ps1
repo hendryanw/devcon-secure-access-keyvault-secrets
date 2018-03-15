@@ -9,7 +9,7 @@ param (
 
 $ErrorActionPreference = "STOP"
 
-# Import the certificate
+# Convert the certificate into base64 string representation.
 $x509cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
 $x509cer.Import($PublicCertFilePath)
 $cerValue = [System.Convert]::ToBase64String($x509cer.GetRawCertData())
