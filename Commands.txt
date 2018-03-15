@@ -10,14 +10,14 @@ CD C:\00-Source\devcon-keyvault\CertificateOperations
     -ServicePrincipalName devcon-VM-sp `
     -PublicCertFilePath C:\00-Source\devcon-keyvault\Certs\public.cer
 
-- Assign the new Service Principal access to the Key Vault.
-
 - Upload the private certificate into key vault.
 CD C:\00-Source\devcon-keyvault\CertificateOperations
 .\Upload-PrivateCert `
     -VaultName devcon-kv `
     -SecretName devcon-VM-private-cert `
     -PrivateCertFilePath C:\00-Source\devcon-keyvault\Certs\private.pfx
+
+- Assign the new Service Principal access to the Key Vault.
 
 - Deploy the devcon-VM
 CD C:\00-Source\devcon-keyvault\DevCon-VM-Template
@@ -26,3 +26,11 @@ CD C:\00-Source\devcon-keyvault\DevCon-VM-Template
 - Check the certificate in the certificate store certlm.msc
 - Copy the Get-SuperSecret.ps1 to VM
 - Execute the Get-SuperSecret.ps1
+
+Rollback changes.
+- Remove the VM Resource Group.
+- Removing Service Principal access policies in the Key Vault.
+- Removing the uploaded certificate from the secrets store.
+- Delete the Service Principal.
+Remove-AzureRMADServicePrincipal -ObjectId (Get-AzureRMADServicePrincipal -SearchString devconsp).Id -Force
+Remove-AzureRMADApplication -ObjectId (Get-AzureRmADApplication -DisplayNameStartWith devconsp).ObjectId -Force
