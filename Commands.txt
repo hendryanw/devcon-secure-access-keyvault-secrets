@@ -1,6 +1,3 @@
-- Enabling access to Azure Virtual Machines for deployment.
-- Enabling access to Azure Resource Manager for template deployment.
-
 - Open PowerShell window and Login to Azure
 Login-AzureRmAccount -SubscriptionName Arvato-MS-Case
 
@@ -26,11 +23,3 @@ CD C:\00-Source\devcon-keyvault\DevCon-VM-Template
 - Check the certificate in the certificate store certlm.msc
 - Copy the Get-SuperSecret.ps1 to VM
 - Execute the Get-SuperSecret.ps1
-
-Rollback changes.
-- Remove the VM Resource Group.
-- Removing Service Principal access policies in the Key Vault.
-- Removing the uploaded certificate from the secrets store.
-- Delete the Service Principal.
-Remove-AzureRMADServicePrincipal -ObjectId (Get-AzureRMADServicePrincipal -SearchString devconsp).Id -Force
-Remove-AzureRMADApplication -ObjectId (Get-AzureRmADApplication -DisplayNameStartWith devconsp).ObjectId -Force
