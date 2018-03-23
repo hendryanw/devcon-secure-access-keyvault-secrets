@@ -21,7 +21,7 @@
             "value": "/subscriptions/f6b0f8e9-1318-4bc9-b4be-e853071d1402/resourceGroups/devcon-malaysia/providers/Microsoft.KeyVault/vaults/devcon-kv"
         },
         "privateCertSecretId": {
-            "value": "https://devcon-kv.vault.azure.net/secrets/devcon-VM-private-cert/eec739f40bb14d42840fe8eca5990175"
+            "value": "https://devcon-kv.vault.azure.net:443/secrets/devcon-VM-private-cert/5f82f5d263894f6cb4f0601ec2ded20b"
         }
     }
 }
